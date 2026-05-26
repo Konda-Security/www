@@ -1,0 +1,622 @@
+/* ── Konda Security — Dark + Gold Theme ─────────────────────── */
+
+/* ── Self-hosted Inter (Latin) ──────────────────────────────── */
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/inter-latin-400.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/inter-latin-500.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/inter-latin-600.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/inter-latin-700.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+    --gold: #d4a843;
+    --gold-light: #e8c36a;
+    --gold-dim: #b08930;
+    --dark-bg: #0b0f19;
+    --dark-surface: #121828;
+    --dark-card: #1a2234;
+    --dark-border: #242e42;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #7a8ba5;
+}
+
+/* ── Force dark palette on PaperMod variables ───────────────── */
+
+html[data-theme="dark"],
+:root {
+    --theme: var(--dark-bg);
+    --entry: var(--dark-card);
+    --primary: var(--text-primary);
+    --secondary: var(--text-secondary);
+    --tertiary: var(--dark-border);
+    --content: var(--text-primary);
+    --code-bg: var(--dark-surface);
+    --border: var(--dark-border);
+    --gap: 24px;
+}
+
+/* ── Typography ─────────────────────────────────────────────── */
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    line-height: 1.7;
+}
+
+code, pre {
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+}
+
+/* ── Gold accent links ──────────────────────────────────────── */
+
+a {
+    color: var(--gold);
+}
+
+a:hover {
+    color: var(--gold-light);
+}
+
+.post-content a {
+    color: var(--gold);
+    text-decoration: underline;
+    text-decoration-color: var(--gold-dim);
+    text-underline-offset: 3px;
+}
+
+.post-content a:hover {
+    color: var(--gold-light);
+    text-decoration-color: var(--gold-light);
+}
+
+/* ── Header / Navigation ────────────────────────────────────── */
+
+.header {
+    background: var(--dark-bg);
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.header .logo a {
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.header .logo a:hover {
+    color: var(--gold-light);
+}
+
+#menu .active {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+#menu a:hover span {
+    color: var(--gold-light);
+}
+
+/* ── Hero / Home Info ───────────────────────────────────────── */
+
+.home-info {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 4rem 0 3rem;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.hero-headshot {
+    flex-shrink: 0;
+}
+
+.hero-headshot img {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 40px rgba(212, 168, 67, 0.15);
+}
+
+.hero-content h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+}
+
+.hero-content .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+}
+
+.hero-content .hero-description {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 1.75rem;
+}
+
+.hero-cta {
+    display: inline-flex;
+    gap: 1rem;
+}
+
+.hero-cta a {
+    display: inline-block;
+    padding: 0.7rem 1.75rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    letter-spacing: 0.02em;
+}
+
+.hero-cta .cta-primary {
+    background: var(--gold);
+    color: var(--dark-bg);
+}
+
+.hero-cta .cta-primary:hover {
+    background: var(--gold-light);
+    box-shadow: 0 4px 20px rgba(212, 168, 67, 0.3);
+}
+
+.hero-cta .cta-secondary {
+    border: 1.5px solid var(--dark-border);
+    color: var(--text-primary);
+    background: transparent;
+}
+
+.hero-cta .cta-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+
+    .hero-headshot img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ── Selected Outcomes ──────────────────────────────────────── */
+
+.outcomes-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 0 2.5rem;
+}
+
+.outcomes-section h2 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.outcome-item {
+    padding: 1.5rem;
+    background: var(--dark-surface);
+    border-left: 3px solid var(--gold-dim);
+    border-radius: 0 6px 6px 0;
+}
+
+.outcome-item .outcome-context {
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+}
+
+.outcome-item .outcome-detail {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+    .outcomes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Advisory Services on homepage ──────────────────────────── */
+
+.services-overview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 2rem 0 3rem;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.services-overview h2 {
+    grid-column: 1 / -1;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.service-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    display: block;
+}
+
+.service-card:hover {
+    border-color: var(--gold-dim);
+    box-shadow: 0 4px 20px rgba(212, 168, 67, 0.08);
+}
+
+.service-card h3 {
+    font-size: 1.05rem;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ── Credentials bar ────────────────────────────────────────── */
+
+.credentials-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    justify-content: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--dark-border);
+    border-bottom: 1px solid var(--dark-border);
+    max-width: 960px;
+    margin: 0 auto 2rem;
+}
+
+.credential {
+    text-align: center;
+}
+
+.credential .credential-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+}
+
+.credential .credential-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.2rem;
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .credentials-bar {
+        gap: 1rem;
+    }
+    .credential .credential-value {
+        font-size: 1.2rem;
+    }
+    .services-overview {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Latest Insights heading ────────────────────────────────── */
+
+.home-info ~ .post-entry:first-of-type {
+    margin-top: 0;
+}
+
+/* ── Latest Insights heading ────────────────────────────────── */
+
+.insights-heading {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem 0 0.5rem;
+}
+
+.insights-heading h2 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+/* ── Blog post list entries ─────────────────────────────────── */
+
+.post-entry {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    transition: border-color 0.2s ease;
+}
+
+.post-entry:hover {
+    border-color: var(--gold-dim);
+}
+
+.entry-header h2 {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.post-entry .entry-content {
+    color: var(--text-secondary);
+}
+
+.tag {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    color: var(--text-secondary);
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+.tag:hover {
+    border-color: var(--gold-dim);
+    color: var(--gold);
+}
+
+/* ── Post content ───────────────────────────────────────────── */
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.post-content h2 {
+    margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.post-content strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.post-content blockquote {
+    border-left: 3px solid var(--gold);
+    padding-left: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.post-content hr {
+    border-color: var(--dark-border);
+}
+
+.post-content code {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+    padding: 0.15em 0.4em;
+    font-size: 0.88em;
+}
+
+.post-content pre code {
+    border: none;
+    padding: 0;
+}
+
+/* ── Table of Contents ──────────────────────────────────────── */
+
+.toc {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+}
+
+.toc a {
+    color: var(--text-secondary);
+}
+
+.toc a:hover {
+    color: var(--gold);
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+.footer {
+    border-top: 1px solid var(--dark-border);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.footer a {
+    color: var(--text-secondary);
+}
+
+.footer a:hover {
+    color: var(--gold);
+}
+
+/* ── Social icons ───────────────────────────────────────────── */
+
+.social-icons a {
+    color: var(--text-muted);
+}
+
+.social-icons a:hover {
+    color: var(--gold);
+}
+
+.social-icons svg {
+    fill: currentColor;
+}
+
+/* ── Breadcrumbs ────────────────────────────────────────────── */
+
+.breadcrumbs a {
+    color: var(--text-muted);
+}
+
+.breadcrumbs a:hover {
+    color: var(--gold);
+}
+
+/* ── Search ─────────────────────────────────────────────────── */
+
+#searchInput {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    color: var(--text-primary);
+    border-radius: 6px;
+}
+
+#searchInput:focus {
+    border-color: var(--gold);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(212, 168, 67, 0.2);
+}
+
+/* ── Scroll to top ──────────────────────────────────────────── */
+
+.top-link {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    color: var(--gold);
+}
+
+.top-link:hover {
+    background: var(--gold);
+    color: var(--dark-bg);
+    border-color: var(--gold);
+}
+
+/* ── Post meta ──────────────────────────────────────────────── */
+
+.post-meta {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+/* ── Pagination ─────────────────────────────────────────────── */
+
+.pagination a {
+    color: var(--text-secondary);
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* ── Recent posts heading on home ───────────────────────────── */
+
+.home-info + .first-entry,
+.first-entry {
+    border: 1px solid var(--dark-border);
+    border-radius: 8px;
+    background: var(--dark-card);
+}
+
+.first-entry:hover {
+    border-color: var(--gold-dim);
+}
+
+/* ── Selection color ────────────────────────────────────────── */
+
+::selection {
+    background: rgba(212, 168, 67, 0.3);
+    color: var(--text-primary);
+}

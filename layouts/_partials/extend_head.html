@@ -1,0 +1,14 @@
+{{- /* Custom head: favicons and OG image fallback */ -}}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+{{- /* OG image fallback when no cover image is set */ -}}
+{{- if not .Params.cover.image }}
+<meta property="og:image" content="{{ "images/headshot.png" | absURL }}">
+<meta name="twitter:image" content="{{ "images/headshot.png" | absURL }}">
+{{- end }}
+
+{{- /* Site-wide OG metadata enhancements */ -}}
+<meta property="og:site_name" content="Konda Security">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta name="twitter:card" content="summary">

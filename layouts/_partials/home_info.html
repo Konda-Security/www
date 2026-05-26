@@ -1,0 +1,89 @@
+{{- with site.Params.homeInfoParams }}
+<article class="first-entry home-info">
+
+    <div class="hero-section">
+        <div class="hero-headshot">
+            <img src="/images/headshot.png" alt="Matt Konda" width="240" height="240">
+        </div>
+        <div class="hero-content">
+            <h1>Board-level security judgment from someone who has built the programs, companies, and tools.</h1>
+            <div class="hero-subtitle">Matt Konda</div>
+            <div class="hero-description">
+                Security advisor for AI, quantum, and high-stakes software companies.
+                Former Head of Security at IonQ (public quantum computing). Founder of Jemurai.
+                OWASP Global Board Chair. 27+ years building security programs, leading teams,
+                and shipping software.
+            </div>
+            <div class="hero-cta">
+                <a href="/services/" class="cta-primary">Advisory Services</a>
+                <a href="/contact/" class="cta-secondary">Start a Conversation</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="credentials-bar">
+        <div class="credential">
+            <span class="credential-value">27+</span>
+            <span class="credential-label">Years Experience</span>
+        </div>
+        <div class="credential">
+            <span class="credential-value">IonQ</span>
+            <span class="credential-label">Head of Security</span>
+        </div>
+        <div class="credential">
+            <span class="credential-value">Jemurai</span>
+            <span class="credential-label">Founder &amp; CEO</span>
+        </div>
+        <div class="credential">
+            <span class="credential-value">OWASP</span>
+            <span class="credential-label">Board Chair</span>
+        </div>
+    </div>
+
+    <div class="outcomes-section">
+        <h2>Selected Outcomes</h2>
+        <div class="outcomes-grid">
+            <div class="outcome-item">
+                <div class="outcome-context">IonQ &middot; Public Quantum Computing Company</div>
+                <div class="outcome-detail">Built the entire security program from zero &mdash; SOC&nbsp;2, ISO&nbsp;27001, CMMC, PCI. Hired and led a team of 12. Managed security through six acquisitions. Zero material breaches across five-year tenure.</div>
+            </div>
+            <div class="outcome-item">
+                <div class="outcome-context">Jemurai &middot; Security Consulting Firm</div>
+                <div class="outcome-detail">Founded and ran for 12+ years. Delivered hundreds of penetration tests and security program engagements across quantum, finance, healthcare, and insurance. Built two SaaS platforms. Acquired 2024.</div>
+            </div>
+            <div class="outcome-item">
+                <div class="outcome-context">OWASP &middot; Global Application Security Community</div>
+                <div class="outcome-detail">Elected to the global board of directors. Served as Board Chair 2016&ndash;2017, leading the 40,000+ member community through its maximum board terms.</div>
+            </div>
+            <div class="outcome-item">
+                <div class="outcome-context">Quantum Cryptanalysis Tooling</div>
+                <div class="outcome-detail">Built working toolkits that dissect TLS, SSH, and blockchain protocols, extract vulnerable cryptographic material, and model quantum attacks at the circuit level.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="services-overview">
+        <h2>Advisory Services</h2>
+        <a href="/services/#executive-security-advisory" class="service-card">
+            <h3>Executive Security Advisory</h3>
+            <p>Board briefings, CISO advisory, security strategy, and organizational readiness for companies navigating complex security decisions.</p>
+        </a>
+        <a href="/services/#ai-security-strategy" class="service-card">
+            <h3>AI Security Strategy</h3>
+            <p>Governance, risk frameworks, and hands-on security architecture for organizations building with or deploying AI systems.</p>
+        </a>
+        <a href="/services/#quantum--pqc-readiness" class="service-card">
+            <h3>Quantum / PQC Readiness</h3>
+            <p>Quantum threat assessments, post-quantum migration planning, and cryptographic readiness &mdash; built on five years inside a quantum computing company.</p>
+        </a>
+        <a href="/services/#security-program-build-out" class="service-card">
+            <h3>Security Program Build-Out</h3>
+            <p>From zero to audit-ready. Framework selection, team hiring, control implementation, and M&amp;A security due diligence.</p>
+        </a>
+    </div>
+
+    <footer class="entry-footer">
+        {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
+    </footer>
+</article>
+{{- end -}}

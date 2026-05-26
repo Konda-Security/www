@@ -1,0 +1,102 @@
+baseURL = "https://kondasecurity.com/"
+languageCode = "en-us"
+title = "Konda Security"
+theme = "PaperMod"
+paginate = 10
+
+[params]
+  env = "production"
+  description = "Security advisory for AI, quantum, and high-stakes software companies. Board-level judgment from someone who has built the programs, companies, and tools."
+  author = "Matt Konda"
+  defaultTheme = "dark"
+  disableThemeToggle = true
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  comments = false
+  copyright = "Konda Security"
+
+  [params.label]
+    text = "KONDA SECURITY"
+
+  [params.homeInfoParams]
+    Title = "Security consulting from a builder's perspective."
+    Content = """
+I'm Matt Konda — security leader, technical founder, and hands-on practitioner with 27+ years \
+building and securing software. I help organizations navigate AI security, quantum threats, \
+and security program challenges with depth that comes from doing the work, not just advising on it.
+
+[Learn more about how I can help →](/services/)
+"""
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/mattkonda"
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/mkonda"
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:matt@kondasecurity.com"
+
+  [params.schema]
+    publisherType = "Person"
+
+  [params.assets]
+    favicon = "/favicon.svg"
+    apple_touch_icon = "/apple-touch-icon.png"
+
+  [params.cover]
+    hiddenInList = false
+    hiddenInSingle = false
+
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+[menu]
+  [[menu.main]]
+    identifier = "services"
+    name = "Services"
+    url = "/services/"
+    weight = 10
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 20
+  [[menu.main]]
+    identifier = "insights"
+    name = "Insights"
+    url = "/blog/"
+    weight = 30
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    weight = 40
+  [[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 50
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
