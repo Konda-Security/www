@@ -1,6 +1,6 @@
 ---
 title: "The Quantum Threat Is Not Theoretical"
-date: 2026-05-26
+date: 2026-07-07
 summary: "Most quantum security conversations stop at 'someday.' After five years inside a quantum computing company, I can tell you exactly what's vulnerable, when, and what to do about it."
 tags: ["quantum security", "PQC", "cryptography"]
 draft: false

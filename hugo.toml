@@ -22,6 +22,8 @@ paginate = 10
 
   [params.label]
     text = "KONDA SECURITY"
+    icon = "images/konda-security-logo-black.png"
+    iconHeight = 35
 
   [params.homeInfoParams]
     Title = "Security consulting from a builder's perspective."

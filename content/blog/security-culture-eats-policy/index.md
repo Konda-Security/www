@@ -1,6 +1,6 @@
 ---
 title: "Security Culture Eats Policy for Breakfast"
-date: 2026-05-14
+date: 2026-07-01
 summary: "You can write perfect security policies and still have a terrible security posture. What actually changes behavior is culture — and culture comes from how security leaders show up."
 tags: ["security culture", "security program", "leadership"]
 draft: false

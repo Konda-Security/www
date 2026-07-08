@@ -1,6 +1,6 @@
 ---
 title: "AI Security: Separating What's Real from What's Marketing"
-date: 2026-05-20
+date: 2026-07-03
 summary: "Everyone is selling AI security. Most of it is repackaged application security with a new label. Here's what actually matters when securing AI systems — and using AI to secure yours."
 tags: ["AI security", "LLM", "application security"]
 draft: false
