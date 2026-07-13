@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Explore WASM — Security Boundary Explorer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        h1 {
+            color: #ff4444;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+        .tier-label {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        .tier-0 { background: #1a2a2a; color: #4ecdc4; }
+        .tier-1 { background: #1a2a1a; color: #7ddf64; }
+        .tier-2 { background: #2a2a1a; color: #ffe66d; }
+        .tier-3 { background: #2a1a1a; color: #ff6b6b; }
+        .tier-4 { background: #2a1a2a; color: #c77dff; }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .category {
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+        .category h2 {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid #222;
+        }
+        .category p.desc {
+            color: #666;
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+        }
+        .cat-sandbox h2 { color: #4ecdc4; }
+        .cat-evasion h2 { color: #ffe66d; }
+        .cat-compute h2 { color: #ff6b6b; }
+        .cat-silent h2 { color: #7ddf64; }
+        .cat-gesture h2 { color: #ffe66d; }
+        .cat-permission h2 { color: #ff6b6b; }
+        .cat-persist h2 { color: #c77dff; }
+        .probe-btn {
+            display: block;
+            width: 100%;
+            padding: 0.4rem 0.6rem;
+            margin-bottom: 0.3rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #ccc;
+            font-family: inherit;
+            font-size: 0.75rem;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.15s;
+        }
+        .probe-btn:hover { background: #252525; border-color: #555; }
+        .probe-btn.running { border-color: #ffe66d; color: #ffe66d; }
+        .probe-btn.done { border-color: #4ecdc4; }
+        .probe-btn .async-badge {
+            font-size: 0.6rem;
+            color: #666;
+            float: right;
+        }
+        .controls {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .controls button {
+            padding: 0.4rem 1rem;
+            background: #ff4444;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-family: inherit;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .controls button:hover { background: #ff6666; }
+        .controls button.secondary {
+            background: transparent;
+            border: 1px solid #555;
+            color: #999;
+        }
+        .controls button.secondary:hover { border-color: #888; color: #ccc; }
+        .controls select {
+            padding: 0.4rem 0.6rem;
+            background: #1a1a1a;
+            border: 1px solid #555;
+            border-radius: 4px;
+            color: #ccc;
+            font-family: inherit;
+            font-size: 0.8rem;
+        }
+        #output {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 300px;
+            max-height: 60vh;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+        .output-entry { margin-bottom: 1rem; }
+        .output-entry .header { color: #ff4444; font-weight: bold; }
+        .status-crossed { color: #ff6b6b; }
+        .status-blocked { color: #4ecdc4; }
+        .status-probed { color: #ffe66d; }
+        .status-evasion { color: #ffe66d; }
+        .status-abuse { color: #ff6b6b; }
+        #wasm-status {
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .status-loading { background: #332200; color: #ffe66d; }
+        .status-ready { background: #003322; color: #4ecdc4; }
+        .status-error { background: #330000; color: #ff4444; }
+    </style>
+</head>
+<body>
+    <h1>Explore WASM</h1>
+    <p class="subtitle">WebAssembly Security Boundary Explorer — educational research tool</p>
+
+    <div id="wasm-status" class="status-loading">Loading WASM module...</div>
+
+    <div class="categories">
+        <!-- Phase 0: Original probes -->
+        <div class="category cat-sandbox">
+            <h2>Sandbox Boundary <span class="tier-label tier-0">TIER 0</span></h2>
+            <p class="desc">What WASM can access via the JS bridge</p>
+            <button class="probe-btn" data-probe="sandbox::read_cookies">Read Cookies</button>
+            <button class="probe-btn" data-probe="sandbox::read_localstorage">Read localStorage</button>
+            <button class="probe-btn" data-probe="sandbox::read_dom">Read DOM</button>
+            <button class="probe-btn" data-probe="sandbox::navigator_fingerprint">Browser Fingerprint</button>
+            <button class="probe-btn" data-probe="sandbox::attempt_fetch">Construct Fetch Request</button>
+            <button class="probe-btn" data-probe="sandbox::read_url">Read Page URL</button>
+        </div>
+        <div class="category cat-evasion">
+            <h2>Evasion &amp; Obfuscation <span class="tier-label tier-0">TIER 0</span></h2>
+            <p class="desc">How WASM obscures malicious intent</p>
+            <button class="probe-btn" data-probe="evasion::hidden_payload">Hidden Payload (XOR)</button>
+            <button class="probe-btn" data-probe="evasion::timing_check">Debugger Detection</button>
+            <button class="probe-btn" data-probe="evasion::dynamic_dispatch">Dynamic Command Dispatch</button>
+            <button class="probe-btn" data-probe="evasion::memory_stego">Memory Steganography</button>
+        </div>
+        <div class="category cat-compute">
+            <h2>Compute Abuse <span class="tier-label tier-0">TIER 0</span></h2>
+            <p class="desc">Resource exhaustion at near-native speed</p>
+            <button class="probe-btn" data-probe="compute::hash_benchmark">Hash Benchmark (Mining)</button>
+            <button class="probe-btn" data-probe="compute::memory_pressure">Memory Pressure</button>
+            <button class="probe-btn" data-probe="compute::busy_loop">Busy Loop (DoS)</button>
+        </div>
+
+        <!-- Tier 1: Silent access -->
+        <div class="category cat-silent">
+            <h2>Silent Access <span class="tier-label tier-1">TIER 1 — NO PERMISSION</span></h2>
+            <p class="desc">No permission needed — user has zero awareness</p>
+            <button class="probe-btn" data-probe="silent::cookie_scope_map">Cookie Scope Map</button>
+            <button class="probe-btn" data-probe="silent::autofill_harvest">Autofill Harvest</button>
+            <button class="probe-btn" data-probe="silent::canvas_fingerprint">Canvas Fingerprint</button>
+            <button class="probe-btn" data-probe="silent::audio_fingerprint">Audio Fingerprint <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="silent::webrtc_ip_leak">WebRTC IP Leak <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="silent::cache_enumerate">Cache Enumerate <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="silent::indexeddb_enumerate">IndexedDB Enumerate <span class="async-badge">async</span></button>
+        </div>
+
+        <!-- Tier 2: User gesture -->
+        <div class="category cat-gesture">
+            <h2>User Gesture Required <span class="tier-label tier-2">TIER 2 — CLICK NEEDED</span></h2>
+            <p class="desc">Requires user interaction but no explicit permission</p>
+            <button class="probe-btn" data-probe="gesture::clipboard_read">Clipboard Read <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="gesture::clipboard_hijack">Clipboard Hijack <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="gesture::filesystem_probe">File System Access <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="gesture::form_data_theft">Form Data Theft</button>
+        </div>
+
+        <!-- Tier 3: Permission prompt -->
+        <div class="category cat-permission">
+            <h2>Permission Prompt <span class="tier-label tier-3">TIER 3 — USER APPROVAL</span></h2>
+            <p class="desc">Browser shows permission dialog — social engineering target</p>
+            <button class="probe-btn" data-probe="permission::geolocation">Geolocation <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="permission::media_devices">Camera &amp; Mic <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="permission::notification_probe">Notifications <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="permission::bluetooth_scan">Bluetooth Scan <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="permission::usb_probe">WebUSB <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="permission::serial_probe">Web Serial <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="permission::hid_probe">WebHID <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="permission::screen_capture">Screen Capture <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="permission::sensor_probe">Sensor APIs <span class="async-badge">async</span></button>
+        </div>
+
+        <!-- Tier 4: Persistence -->
+        <div class="category cat-persist">
+            <h2>Persistence &amp; C2 <span class="tier-label tier-4">TIER 4 — PERSISTENCE</span></h2>
+            <p class="desc">Maintaining access and communication channels</p>
+            <button class="probe-btn" data-probe="persist::service_worker">Service Worker <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="persist::websocket_c2">WebSocket C2 <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="persist::web_worker_stealth">Web Worker Stealth <span class="async-badge">async</span></button>
+            <button class="probe-btn" data-probe="persist::shared_memory_timing">SharedArrayBuffer Timing <span class="async-badge">async</span></button>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="run-all">Run All Probes</button>
+        <select id="tier-select">
+            <option value="all">All Tiers</option>
+            <option value="sandbox">Tier 0: Sandbox</option>
+            <option value="evasion">Tier 0: Evasion</option>
+            <option value="compute">Tier 0: Compute</option>
+            <option value="silent">Tier 1: Silent</option>
+            <option value="gesture">Tier 2: Gesture</option>
+            <option value="permission">Tier 3: Permission</option>
+            <option value="persist">Tier 4: Persistence</option>
+        </select>
+        <button id="run-tier">Run Selected Tier</button>
+        <button id="clear" class="secondary">Clear Output</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script type="module" src="js/harness.js"></script>
+</body>
+</html>
