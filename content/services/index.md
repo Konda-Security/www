@@ -46,18 +46,6 @@ Every enterprise CISO is asking what quantum computing means for their security 
 
 ---
 
-## Security Program Build-Out
-
-Building security programs from scratch is what I've done my entire career — at IonQ, at Jemurai for dozens of clients, and at Trustwave for security products.
-
-**Fractional CISO / vCISO** — Experienced security leadership without a full-time hire. I've delivered this model for years, including my initial engagement at IonQ, which started as a fractional CISO role before converting to full-time.
-
-**Zero-to-Audit Program Build** — Framework selection (NIST 800-53, ISO 27001, SOC 2), policy development, control implementation, team hiring, vendor selection, and audit preparation. I've taken organizations from nothing to certified.
-
-**M&A Security Due Diligence** — I've managed security through six acquisitions at IonQ. Target company security assessments, risk identification, and integration planning.
-
----
-
 ## Technical Due Diligence & Architecture Review
 
 For investors, acquirers, and executive teams who need a credible technical assessment before making decisions.

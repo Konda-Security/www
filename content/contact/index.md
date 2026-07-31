@@ -17,7 +17,7 @@ For advisory retainers, board briefings, AI security strategy, quantum readiness
 
 ### Location
 
-Based in **Dallas, TX**. Available for remote engagements nationwide and open to travel as needed.
+Based in **Dallas, TX**. Available for remote engagements globally and open to travel as needed.
 
 ---
 
