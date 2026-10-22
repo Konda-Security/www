@@ -10,7 +10,7 @@
     {
       "name": "tprm",
       "displayName": "Konda Security Third Party Risk Management",
-      "description": "Third party risk management. The vendor-review skill researches a vendor across 10 weighted dimensions (security, privacy, compliance, breaches, AI risk, export controls, financials, reputation, leadership, transparency), scores each 1-5 with cited evidence, and writes a markdown and PDF report.",
+      "description": "Third party risk management for Claude Code: vendor triage, full 10-dimension vendor reviews, SOC 2 and other evidence reviews, periodic re-reviews, an approved-services tracker, GitHub issue sync, and draft vendor management policy and process documents, all working on a per-client workspace.",
       "source": {
         "source": "url",
         "url": "https://github.com/Konda-Security/vendor-review-plugin.git",
@@ -24,7 +24,7 @@
       "repository": "https://github.com/Konda-Security/vendor-review-plugin",
       "license": "MIT",
       "category": "security",
-      "tags": ["security", "tprm", "vendor-risk", "third-party-risk", "compliance", "due-diligence"]
+      "tags": ["security", "tprm", "vendor-risk", "third-party-risk", "vendor-management", "soc2", "compliance", "due-diligence"]
     }
   ]
 }
