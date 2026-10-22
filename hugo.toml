@@ -82,6 +82,11 @@ and security program challenges with depth that comes from doing the work, not j
     url = "/blog/"
     weight = 30
   [[menu.main]]
+    identifier = "plugins"
+    name = "Plugins"
+    url = "/claude/"
+    weight = 35
+  [[menu.main]]
     identifier = "contact"
     name = "Contact"
     url = "/contact/"

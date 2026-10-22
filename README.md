@@ -44,6 +44,14 @@ draft: false
 
 Edit files in `content/about/`, `content/services/`, or `content/contact/`.
 
+### Claude Code plugin marketplace
+
+`static/claude/marketplace.json` is served at `https://kondasecurity.com/claude/marketplace.json`, and users add it with `/plugin marketplace add <that URL>`. Claude Code downloads only that one file, so every plugin entry needs a source it can fetch on its own (a git `url` or `github` repo), never a relative `./` path. Plugin releases happen in each plugin's own repo by bumping `version` in its `plugin.json`; this file only changes when a plugin is added, renamed, or removed. List new plugins on `content/claude/index.md` too, and validate after every edit:
+
+```bash
+claude plugin validate --strict static/claude/marketplace.json
+```
+
 ## Deployment
 
 ### Step 1: Push to GitHub
@@ -98,6 +106,7 @@ content/
 ├── services/index.md       # Advisory services
 ├── contact/index.md        # Contact page
 ├── search/index.md         # Full-text search
+├── claude/index.md         # Claude Code plugins page
 └── blog/
     ├── _index.md           # Insights listing page
     └── post-name/
@@ -116,6 +125,7 @@ assets/css/extended/
 └── custom.css              # Dark + gold theme, self-hosted Inter font
 
 static/
+├── claude/marketplace.json # Claude Code plugin marketplace catalog
 ├── images/headshot.png     # Headshot
 ├── fonts/inter-latin-*.woff2  # Self-hosted Inter font (4 weights)
 ├── favicon.svg             # SVG favicon
