@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Plugins"
-summary: "Install Konda Security's Claude Code plugins, starting with Vendor Review for third-party security and risk assessments."
+summary: "Install Konda Security's Claude Code plugins, starting with Third Party Risk Management for vendor security and risk assessments."
 ShowToc: false
 ShowReadingTime: false
 ---
@@ -19,33 +19,35 @@ Then browse the plugins with `/plugin`, or install one by name as shown below. F
 
 ---
 
-## Vendor Review
+## Third Party Risk Management (`tprm`)
 
-Third-party vendor security and risk assessment. Give it a vendor's website or name, and it researches the vendor across ten weighted risk dimensions, scores each from 1 to 5 with cited evidence, and writes a markdown and PDF report.
+Skills for third party risk work. The `vendor-review` skill takes a vendor's website or name, researches the vendor across ten weighted risk dimensions, scores each from 1 to 5 with cited evidence, and writes a markdown and PDF report.
 
 **Install**
 
 ```text
-/plugin install vendor-review@konda-security
+/plugin install tprm@konda-security
 ```
 
 Or add the marketplace and install in one step (Claude Code 2.1.275 or later):
 
 ```text
-/plugin install vendor-review --marketplace https://kondasecurity.com/claude/marketplace.json
+/plugin install tprm --marketplace https://kondasecurity.com/claude/marketplace.json
 ```
 
 **Run**
 
 ```text
-/vendor-review:vendor-review <vendor-url-or-company-name>
+/vendor-review <vendor-url-or-company-name>
 ```
+
+The skill is listed as `/tprm:vendor-review`, with the plugin name as a prefix like every plugin skill. The short form works unless another installed command already uses the name `vendor-review`.
 
 **What it assesses:** security posture, privacy practices, compliance, breach history, AI risk, export control risk, financial health, reputational risk, leadership stability, and transparency.
 
 **Requirements:** Claude Code with WebFetch, WebSearch, and subagents available. [pandoc](https://pandoc.org) is optional, for PDF output.
 
-**Source and documentation:** [github.com/Konda-Security/vendor-review-plugin](https://github.com/Konda-Security/vendor-review-plugin)
+**Source and documentation:** [github.com/Konda-Security/vendor-review-plugin](https://github.com/Konda-Security/vendor-review-plugin), MIT licensed
 
 ---
 
